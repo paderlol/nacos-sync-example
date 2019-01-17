@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: nacos-consumer
+demo:
+  service:
+    version: 1.0.0
+    group: zk
+dubbo:
+  registry:
+    address: nacos://127.0.0.1:8848
