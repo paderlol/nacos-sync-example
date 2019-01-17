@@ -176,6 +176,10 @@ public class ZookeeperProviderApplication {
 
    ![add-zk-nacos](img/add-zk-nacos.png)
 
+3. 添加完成效果
+
+![Screenshot from 2019-01-17 18-44-30](img/nacos-sync-1.png)
+
 ### 打开Nacos 控制台 查看同步结果
 
 打开Nacos 控制台: http://localshot:8848
@@ -258,6 +262,10 @@ public class NacosProviderApplication {
 **注意**：通过Nacos注册的Dubbo服务不需要填写**分组**,因为服务名里面已经包括**分组**和**版本信息**
 
 
+
+3. 添加完成效果
+
+![Screenshot from 2019-01-17 18-44-30](img/nacos-sync-1.png)
 
 ### 测试：通过ZK调用刚才同步的任务
 
