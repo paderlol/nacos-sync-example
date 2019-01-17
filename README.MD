@@ -257,7 +257,7 @@ public class NacosProviderApplication {
 
    选择 服务同步 -> 新增同步, 如图
 
-​        ![Screenshot from 2019-01-17 18-34-32](/home/pader/Downloads/img/add-nacos-zk.png)
+​        ![Screenshot from 2019-01-17 18-34-32](img/add-nacos-zk.png)
 
 **注意**：通过Nacos注册的Dubbo服务不需要填写**分组**,因为服务名里面已经包括**分组**和**版本信息**
 
