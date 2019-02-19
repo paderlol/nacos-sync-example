@@ -182,7 +182,7 @@ public class ZookeeperProviderApplication {
 
 ### 打开Nacos 控制台 查看同步结果
 
-打开Nacos 控制台: http://localshot:8848
+打开Nacos 控制台: http://localhost:8848/nacos
 
 选择 服务管理-> 服务列表 ,如图
 
