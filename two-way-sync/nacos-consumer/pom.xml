@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>nacos-sync-example</artifactId>
+    <artifactId>two-way-sync</artifactId>
     <groupId>com.paderlol.nacos</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>zookeeper-provider</artifactId>
+  <artifactId>nacos-consumer</artifactId>
+
+  <name>nacos-consumer</name>
 
   <dependencies>
-    <dependency>
-      <groupId></groupId>
-      <artifactId>dubbs</artifactId>
-    </dependency>
     <!-- Spring Boot dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -40,25 +39,30 @@
       <version>${project.version}</version>
     </dependency>
 
-    <!-- Zookeeper -->
+    <!-- Netty -->
     <dependency>
-      <groupId>org.apache.zookeeper</groupId>
-      <artifactId>zookeeper</artifactId>
+      <groupId>io.netty</groupId>
+      <artifactId>netty-all</artifactId>
     </dependency>
 
+    <!-- Dubbo Nacos registry dependency -->
     <dependency>
-      <groupId>org.apache.curator</groupId>
-      <artifactId>curator-framework</artifactId>
+      <groupId>com.alibaba</groupId>
+      <artifactId>dubbo-registry-nacos</artifactId>
+    </dependency>
+
+    <!-- Keep latest Nacos client version -->
+    <dependency>
+      <groupId>com.alibaba.nacos</groupId>
+      <artifactId>nacos-client</artifactId>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
   </dependencies>
+
+
 
   <build>
     <plugins>
@@ -76,5 +80,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>

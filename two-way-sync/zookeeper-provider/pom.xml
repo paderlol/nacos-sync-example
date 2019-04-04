@@ -3,15 +3,19 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <parent>
-    <artifactId>nacos-sync-example</artifactId>
+    <artifactId>two-way-sync</artifactId>
     <groupId>com.paderlol.nacos</groupId>
     <version>1.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>zookeeper-consumer</artifactId>
-  <dependencies>
+  <artifactId>zookeeper-provider</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId></groupId>
+      <artifactId>dubbs</artifactId>
+    </dependency>
     <!-- Spring Boot dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -24,6 +28,7 @@
       <version>${dubbo-spring-boot.version}</version>
     </dependency>
 
+    <!-- Dubbo -->
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>dubbo</artifactId>
@@ -35,6 +40,12 @@
       <version>${project.version}</version>
     </dependency>
 
+    <!-- Zookeeper -->
+    <dependency>
+      <groupId>org.apache.zookeeper</groupId>
+      <artifactId>zookeeper</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.curator</groupId>
       <artifactId>curator-framework</artifactId>
@@ -42,6 +53,10 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
 

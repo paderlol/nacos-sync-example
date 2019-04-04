@@ -9,7 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author  paderlol
  */
 @SpringBootApplication
-@Slf4j
 @EnableDubbo
 public class ZookeeperProviderApplication {
 

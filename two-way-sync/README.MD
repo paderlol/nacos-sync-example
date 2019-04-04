@@ -1,4 +1,4 @@
-# Nacos Sync 使用
+# Nacos Sync 双向同步 使用
 
 
 
@@ -120,19 +120,19 @@ $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=nac
 
 1. 选择 集群配置->新增集群
 
-![add-zk](two-way-sync/img/add-zk.png)
+![add-zk](img/add-zk.png)
 
 ## 添加Nacos集群
 
 1. 选择 集群配置->新增集群
 
-   ![add-nacos](two-way-sync/img/add-nacos.png)
+   ![add-nacos](img/add-nacos.png)
 
    
 
 ## 添加完成效果
 
-![show-zk-nacos-task](two-way-sync/img/show-zk-nacos-task.png)
+![show-zk-nacos-task](img/show-zk-nacos-task.png)
 
 
 
@@ -174,11 +174,11 @@ public class ZookeeperProviderApplication {
 
    选择 服务同步 -> 新增同步, 如图
 
-   ![add-zk-nacos](two-way-sync/img/add-zk-nacos.png)
+   ![add-zk-nacos](img/add-zk-nacos.png)
 
 3. 添加完成效果
 
-![Screenshot from 2019-01-17 18-44-30](two-way-sync/img/nacos-sync-1.png)
+![Screenshot from 2019-01-17 18-44-30](img/nacos-sync-1.png)
 
 ### 打开Nacos 控制台 查看同步结果
 
@@ -186,7 +186,7 @@ public class ZookeeperProviderApplication {
 
 选择 服务管理-> 服务列表 ,如图
 
-![nacos-console-1](two-way-sync/img/nacos-console-1.png)
+![nacos-console-1](img/nacos-console-1.png)
 
 
 
@@ -251,13 +251,13 @@ public class NacosProviderApplication {
 
 1. 打开Nacos 控制台查看刚才注册的服务,并且复制服务名,如图
 
-   ![Screenshot from 2019-01-17 18-32-50](two-way-sync/img/nacos-console-2.png)
+   ![Screenshot from 2019-01-17 18-32-50](img/nacos-console-2.png)
 
 2. 打开Nacos-Sync 控制台,添加同步任务。
 
    选择 服务同步 -> 新增同步, 如图
 
-​        ![Screenshot from 2019-01-17 18-34-32](two-way-sync/img/add-nacos-zk.png)
+​        ![Screenshot from 2019-01-17 18-34-32](img/add-nacos-zk.png)
 
 **注意**：通过Nacos注册的Dubbo服务不需要填写**分组**,因为服务名里面已经包括**分组**和**版本信息**
 
@@ -265,7 +265,7 @@ public class NacosProviderApplication {
 
 3. 添加完成效果
 
-![Screenshot from 2019-01-17 18-44-30](two-way-sync/img/nacos-sync-1.png)
+![Screenshot from 2019-01-17 18-44-30](img/nacos-sync-1.png)
 
 ### 测试：通过ZK调用刚才同步的任务
 
