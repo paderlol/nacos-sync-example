@@ -14,6 +14,7 @@ public class ZookeeperDemoServiceImpl implements DemoService {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    @Override
     public String sayHello(String name) {
         return String.format("[%s] : Hello, %s", applicationName, name);
     }

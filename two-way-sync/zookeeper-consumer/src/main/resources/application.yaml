@@ -9,3 +9,5 @@ dubbo:
   registry:
     address: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
     protocol: zookeeper
+server:
+  port: 18081

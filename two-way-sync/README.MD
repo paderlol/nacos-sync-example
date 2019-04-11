@@ -16,7 +16,7 @@
 | Zookeeper  | 3.4.9 |
 | Nacos      | 1.0.0-RC3 |
 | Mysql      | 5.7   |
-| Nacos-Sync | 0.2.0 |
+| Nacos-Sync | 0.3.0 |
 
 本文演示上面的中间件服务均使用的是Docker Image,下面是docker安装过程
 
@@ -70,7 +70,7 @@ services:
 2. 启动Nacos server
 
 ```powershell
-$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:latest
+$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:1.0.0-RC3
 ```
 
 
@@ -78,7 +78,7 @@ $ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/na
 3. 启动Mysql
 
 ```powershell
-$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=nacos_sync -p 3306:3306 -d  mysql:5.6
+$ docker run --name nacos-sync-db -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=nacos_sync -p 3306:3306 -d  mysql:5.7
 ```
 
 
