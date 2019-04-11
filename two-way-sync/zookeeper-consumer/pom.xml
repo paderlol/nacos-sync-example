@@ -19,13 +19,13 @@
     </dependency>
 
     <dependency>
-      <groupId>com.alibaba.boot</groupId>
+      <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo-spring-boot-starter</artifactId>
       <version>${dubbo-spring-boot.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>com.alibaba</groupId>
+      <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo</artifactId>
     </dependency>
 
@@ -33,11 +33,6 @@
       <groupId>${project.groupId}</groupId>
       <artifactId>exmaple-api</artifactId>
       <version>${project.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.curator</groupId>
-      <artifactId>curator-framework</artifactId>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>

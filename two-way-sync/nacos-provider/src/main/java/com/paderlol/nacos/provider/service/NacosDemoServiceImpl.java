@@ -1,7 +1,7 @@
 package com.paderlol.nacos.provider.service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.paderlol.nacos.api.DemoService;
+import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Value;
 
 /**

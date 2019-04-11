@@ -1,8 +1,8 @@
 package com.paderlol.nacos.consumer;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.paderlol.nacos.api.DemoService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;

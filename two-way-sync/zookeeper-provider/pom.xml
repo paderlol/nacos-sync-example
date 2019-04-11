@@ -12,10 +12,7 @@
   <artifactId>zookeeper-provider</artifactId>
 
   <dependencies>
-    <dependency>
-      <groupId></groupId>
-      <artifactId>dubbs</artifactId>
-    </dependency>
+
     <!-- Spring Boot dependencies -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -23,14 +20,14 @@
     </dependency>
 
     <dependency>
-      <groupId>com.alibaba.boot</groupId>
+      <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo-spring-boot-starter</artifactId>
       <version>${dubbo-spring-boot.version}</version>
     </dependency>
 
     <!-- Dubbo -->
     <dependency>
-      <groupId>com.alibaba</groupId>
+      <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo</artifactId>
     </dependency>
 
@@ -40,23 +37,16 @@
       <version>${project.version}</version>
     </dependency>
 
-    <!-- Zookeeper -->
+
     <dependency>
-      <groupId>org.apache.zookeeper</groupId>
-      <artifactId>zookeeper</artifactId>
+      <groupId>org.apache.dubbo</groupId>
+      <artifactId>dubbo-dependencies-zookeeper</artifactId>
+      <version>${dubbo.version}</version>
     </dependency>
 
     <dependency>
-      <groupId>org.apache.curator</groupId>
-      <artifactId>curator-framework</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
 

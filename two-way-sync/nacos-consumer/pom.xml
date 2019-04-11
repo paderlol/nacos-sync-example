@@ -22,40 +22,35 @@
     </dependency>
 
     <dependency>
-      <groupId>com.alibaba.boot</groupId>
+      <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo-spring-boot-starter</artifactId>
       <version>${dubbo-spring-boot.version}</version>
     </dependency>
 
     <!-- Dubbo -->
     <dependency>
-      <groupId>com.alibaba</groupId>
+      <groupId>org.apache.dubbo</groupId>
       <artifactId>dubbo</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.dubbo</groupId>
+      <artifactId>dubbo-registry-nacos</artifactId>
+      <version>2.7.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba.nacos</groupId>
+      <artifactId>nacos-client</artifactId>
+    </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>exmaple-api</artifactId>
       <version>${project.version}</version>
     </dependency>
 
-    <!-- Netty -->
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-all</artifactId>
-    </dependency>
 
-    <!-- Dubbo Nacos registry dependency -->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>dubbo-registry-nacos</artifactId>
-    </dependency>
 
-    <!-- Keep latest Nacos client version -->
-    <dependency>
-      <groupId>com.alibaba.nacos</groupId>
-      <artifactId>nacos-client</artifactId>
-    </dependency>
+
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
