@@ -46,6 +46,7 @@
     <dependency>
       <groupId>com.alibaba</groupId>
       <artifactId>dubbo-registry-nacos</artifactId>
+      <version>0.0.2</version>
     </dependency>
 
     <!-- Keep latest Nacos client version -->

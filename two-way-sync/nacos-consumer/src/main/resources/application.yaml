@@ -1,6 +1,8 @@
 spring:
   application:
     name: nacos-consumer
+  main:
+    allow-bean-definition-overriding: true
 
 demo:
   service:
