@@ -13,7 +13,7 @@
   <artifactId>exmaple-api</artifactId>
 
   <name>exmaple-api</name>
-
+<packaging>jar</packaging>
   <url>http://www.example.com</url>
 
 

@@ -12,7 +12,7 @@
   <modules>
     <module>eureka-server</module>
     <module>eureka-provider</module>
-    <module>nacos-consumer</module>
+    <module>nacos-cloud-consumer</module>
   </modules>
   <artifactId>one-way-sync</artifactId>
   <packaging>pom</packaging>
