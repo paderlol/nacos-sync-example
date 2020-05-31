@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <artifactId>cloud-consul</artifactId>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <groupId>org.springframework.cloud</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>0.2.1.RELEASE</version>
+            </dependency>
+            <dependency>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <groupId>org.springframework.cloud</groupId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>${spring-cloud.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>consul-provider-cloud</module>
+        <module>nacos-provider-cloud</module>
+    </modules>
+    <packaging>pom</packaging>
+    <parent>
+        <artifactId>nacos-sync-example</artifactId>
+        <groupId>com.paderlol.nacos</groupId>
+        <version>1.0-SNAPSHOT</version>
+
+    </parent>
+    <properties>
+        <java.version>1.8</java.version>
+        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+    </properties>
+</project>
