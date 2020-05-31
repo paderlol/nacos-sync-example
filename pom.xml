@@ -9,8 +9,9 @@
   <version>1.0-SNAPSHOT</version>
   <modules>
 
-    <module>two-way-sync</module>
-    <module>one-way-sync</module>
+    <module>dubbo-zookeeper</module>
+    <module>cloud-consul</module>
+    <module>cloud-eureka</module>
   </modules>
   <packaging>pom</packaging>
   <description>Nacos sync example</description>
@@ -21,9 +22,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <spring-boot.version>2.1.1.RELEASE</spring-boot.version>
-    <dubbo-spring-boot.version>0.2.1-SNAPSHOT</dubbo-spring-boot.version>
-    <dubbo.version>2.6.7</dubbo.version>
-    <dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>
+    <dubbo-spring-boot.version>2.7.3</dubbo-spring-boot.version>
+<!--    <dubbo.version>2.6.5</dubbo.version>-->
+    <dubbo.version>2.7.3</dubbo.version>
+<!--    <dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>-->
     <nacos-client.version>1.0.0-RC3</nacos-client.version>
   </properties>
 
@@ -40,7 +42,7 @@
 
       <!-- Dubbo dependencies -->
       <dependency>
-        <groupId>com.alibaba</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo-dependencies-bom</artifactId>
         <version>${dubbo.version}</version>
         <type>pom</type>
@@ -51,7 +53,7 @@
 
       <!-- Dubbo -->
       <dependency>
-        <groupId>com.alibaba</groupId>
+        <groupId>org.apache.dubbo</groupId>
         <artifactId>dubbo</artifactId>
         <version>${dubbo.version}</version>
         <exclusions>
@@ -70,11 +72,11 @@
         </exclusions>
       </dependency>
       <!-- Dubbo Nacos registry dependency -->
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>dubbo-registry-nacos</artifactId>
-        <version>${dubbo-registry-nacos.version}</version>
-      </dependency>
+<!--      <dependency>-->
+<!--        <groupId>com.alibaba</groupId>-->
+<!--        <artifactId>dubbo-registry-nacos</artifactId>-->
+<!--        <version>${dubbo-registry-nacos.version}</version>-->
+<!--      </dependency>-->
 
       <!-- Keep latest Nacos client version -->
       <dependency>
