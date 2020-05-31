@@ -10,6 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>zookeeper-provider</artifactId>
+  <name>zookeeper-provider</name>
 
   <dependencies>
 
@@ -61,7 +62,6 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
     </dependency>
-</dependency>
   </dependencies>
 
   <build>
