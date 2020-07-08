@@ -1,9 +1,9 @@
 package com.example.controller;
 
+import static com.example.NacosConsumerApplication.HelloService;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import static com.example.NacosConsumerApplication.HelloService;
 
 /**
  * @author paderlol
@@ -17,8 +17,14 @@ public class HelloController {
         this.helloService = helloService;
     }
 
-    @GetMapping(value = "/hello")
+    @GetMapping(value = "/hello-eureka")
     public String hello(){
         return helloService.hello();
+    }
+
+    @GetMapping(value = "/hello")
+    public String hello2() {
+
+        return "Hello World from Nacos!";
     }
 }

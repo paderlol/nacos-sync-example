@@ -11,7 +11,7 @@
 
 | 服务       | 版本      |
 | ---------- | --------- |
-| Nacos      | 1.1.4 |
+| Nacos      | 1.3.0 |
 | Mysql      | 5.7       |
 | Nacos-Sync | 0.3.6     |
 
@@ -171,5 +171,5 @@ public class NacosConsumerApplication {
 
 
 
-打开浏览器:<http://localhost:18034/nacos-hello>
+打开浏览器:<http://localhost:18034/hello-eureka>
 
