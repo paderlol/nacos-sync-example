@@ -7,3 +7,9 @@ spring:
         server-addr: 127.0.0.1:8848
 server:
   port: 18034
+
+management:
+  server:
+    servlet:
+      context-path: "/"
+    port: 32000
