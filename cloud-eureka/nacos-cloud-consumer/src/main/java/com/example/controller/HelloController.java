@@ -1,6 +1,6 @@
 package com.example.controller;
 
-import static com.example.NacosConsumerApplication.HelloService;
+import static com.example.NacosConsumerEurekaApplication.HelloService;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

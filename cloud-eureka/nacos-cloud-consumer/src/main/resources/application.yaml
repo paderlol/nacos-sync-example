@@ -5,11 +5,15 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+    loadbalancer:
+      retry:
+        enabled: false
+
 server:
   port: 18034
 
+
 management:
   server:
-    servlet:
-      context-path: "/"
     port: 32000
+    base-path: "/"

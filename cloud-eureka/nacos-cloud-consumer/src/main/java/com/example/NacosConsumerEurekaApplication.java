@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients
-public class NacosConsumerApplication {
+public class NacosConsumerEurekaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NacosConsumerApplication.class, args);
+        SpringApplication.run(NacosConsumerEurekaApplication.class, args);
     }
 
     @FeignClient(name = "spring-cloud-eureka-provider")

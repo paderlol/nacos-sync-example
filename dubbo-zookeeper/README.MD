@@ -71,7 +71,7 @@ services:
 2. 启动Nacos server
 
 ```powershell
-$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:1.0.0-RC3
+$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:2.0.1
 ```
 
 
