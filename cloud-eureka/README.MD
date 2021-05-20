@@ -22,7 +22,7 @@
 1. 启动Nacos server
 
 ```powershell
-$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -d nacos/nacos-server:2.0.1
+$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -p 9848:9848 -d nacos/nacos-server:2.0.1
 ```
 
 
