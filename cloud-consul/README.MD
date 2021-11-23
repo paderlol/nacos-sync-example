@@ -90,7 +90,7 @@ $ docker run --name nacos-sync-db -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=
 
 打开Nacos Sync: localhost:8081
 
-### 添加Zookeeper集群
+### 添加Consul集群
 
 1. 选择 集群配置->新增集群
 
