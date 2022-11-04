@@ -25,7 +25,7 @@
     <dubbo-spring-boot.version>2.7.10</dubbo-spring-boot.version>
 <!--    <dubbo.version>2.6.5</dubbo.version>-->
 
-    <dubbo.version>2.7.10</dubbo.version>
+    <dubbo.version>2.7.18</dubbo.version>
 <!--    <dubbo-registry-nacos.version>0.0.2</dubbo-registry-nacos.version>-->
     <nacos-client.version>1.4.2</nacos-client.version>
   </properties>
