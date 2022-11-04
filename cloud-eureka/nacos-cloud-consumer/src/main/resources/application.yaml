@@ -10,10 +10,10 @@ spring:
         enabled: false
 
 server:
-  port: 18034
+  port: 18035
 
 
 management:
   server:
-    port: 32000
+    port: 32001
     base-path: "/"
