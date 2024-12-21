@@ -3,7 +3,7 @@ spring:
     name: spring-cloud-eureka-provider
 
 server:
-  port: 18035
+  port: 18032
 
 eureka:
   client:

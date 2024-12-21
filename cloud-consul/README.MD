@@ -24,19 +24,20 @@
 
 ```shell
 #启动第1个Server节点，集群要求要有3个Server，将容器8500端口映射到主机8900端口，同时开启管理界面
-docker run -d --name=consul1 -p 8900:8500 -e CONSUL_BIND_INTERFACE=eth0 consul agent --server=true --bootstrap-expect=3 --client=0.0.0.0 -ui
+docker run -d --name=consul1 -p 8900:8500 -e CONSUL_BIND_INTERFACE=eth0 consul:1.15.4 agent --server=true 
+--bootstrap-expect=3 --client=0.0.0.0 -ui
 
 #查看启动后的第一个consul 容器IP
 docker exec -it consul1 cat /etc/hosts | grep 172 
 
 #启动第2个Server节点，并加入集群
-docker run -d --name=consul2 -e CONSUL_BIND_INTERFACE=eth0 consul agent --server=true --client=0.0.0.0 --join 第一个容器ip
+docker run -d --name=consul2 -e CONSUL_BIND_INTERFACE=eth0 consul:1.15.4 agent --server=true --client=0.0.0.0 --join 第一个容器ip
  
 #启动第3个Server节点，并加入集群
-docker run -d --name=consul3 -e CONSUL_BIND_INTERFACE=eth0 consul agent --server=true --client=0.0.0.0 --join 第一个容器ip
+docker run -d --name=consul3 -e CONSUL_BIND_INTERFACE=eth0 consul:1.15.4 agent --server=true --client=0.0.0.0 --join 第一个容器ip
  
 #启动第4个Client节点，并加入集群
-docker run -d --name=consul4 -e CONSUL_BIND_INTERFACE=eth0 consul agent --server=false --client=0.0.0.0 --join 第一个容器ip
+docker run -d --name=consul4 -e CONSUL_BIND_INTERFACE=eth0 consul:1.15.4 agent --server=false --client=0.0.0.0 --join 第一个容器ip
 ```
 
 

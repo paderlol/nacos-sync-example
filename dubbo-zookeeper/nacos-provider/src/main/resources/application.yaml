@@ -1,11 +1,11 @@
 spring:
   application:
-    name: nacos-provider-2
+    name: nacos-provider
   main:
     allow-bean-definition-overriding: true
 demo:
   service:
-    version: 1.0.1
+    version: 1.0.0
     group: nacos
 
 
@@ -14,6 +14,6 @@ dubbo:
     port: -1
     name: dubbo
   registry:
-    address: nacos://127.0.0.1:8847
+    address: nacos://127.0.0.1:8848
 server:
   port: 9002

@@ -11,5 +11,10 @@ demo:
 dubbo:
   registry:
     address: nacos://127.0.0.1:8848
+    group: zk
+  metadata-report:
+    address: nacos://127.0.0.1:8848
+  application:
+    qos-port: 22224
 server:
   port: 18080

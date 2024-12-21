@@ -9,17 +9,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author  paderlol
+ * @author paderlol
  */
 @SpringBootApplication
 @Slf4j
 public class ZookeeperConsumerApplication implements ApplicationRunner {
 
-    @Reference(version = "${demo.service.version}",group = "${demo.service.group}")
+    @Reference(version = "${demo.service.version}", group = "${demo.service.group}")
     private DemoService nacosDemoService;
 
     public static void main(String[] args) {
-        SpringApplication.run(ZookeeperConsumerApplication.class).close();
+        SpringApplication.run(ZookeeperConsumerApplication.class, args);
     }
 
     public void run(ApplicationArguments args) throws Exception {

@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class NacosConsumerEurekaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NacosConsumerEurekaApplication.class, args);
+        SpringApplication.run(NacosConsumerEurekaApplication.class);
     }
 
     @FeignClient(name = "spring-cloud-eureka-provider")
     public interface HelloService {
+
         @RequestMapping(value = "/hello", method = RequestMethod.GET)
         String hello();
 

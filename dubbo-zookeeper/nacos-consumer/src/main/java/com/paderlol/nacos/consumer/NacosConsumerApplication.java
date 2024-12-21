@@ -19,10 +19,11 @@ public class NacosConsumerApplication implements ApplicationRunner {
     private DemoService zookeeperDemoService;
 
     public static void main(String[] args) {
-        SpringApplication.run(NacosConsumerApplication.class).close();
+        SpringApplication.run(NacosConsumerApplication.class, args);
     }
 
     public void run(ApplicationArguments args) throws Exception {
         log.info(zookeeperDemoService.sayHello("This is from Zookeeper to Nacos Sync !"));
     }
 }
+

@@ -1,7 +1,6 @@
 package com.paderlol.nacos.consul.controller;
 
 import com.paderlol.nacos.consul.ConsulProviderApplication.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,14 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
+    public HelloController(HelloService helloService) {
+        this.helloService = helloService;
+    }
+
     @GetMapping(value = "/hello")
     public String hello() {
 
         return "Hello World from Consul!";
     }
 
-    @Autowired
-    private HelloService helloService;
+    private final HelloService helloService;
 
     @GetMapping(value = "/nacos-hello")
     public String hello2() {
