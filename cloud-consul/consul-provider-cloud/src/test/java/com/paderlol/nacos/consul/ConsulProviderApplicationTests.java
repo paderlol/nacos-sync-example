@@ -1,6 +1,6 @@
 package com.paderlol.nacos.consul;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
