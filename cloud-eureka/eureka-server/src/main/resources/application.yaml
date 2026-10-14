@@ -1,6 +1,10 @@
 server:
   port: 18033
 eureka:
+  instance:
+    # Must match the host in defaultZone, otherwise the standalone server treats its own URL as a peer and
+    # replicates every registration, heartbeat and cancel to itself.
+    hostname: localhost
   client:
     registerWithEureka: false
     fetchRegistry: false
