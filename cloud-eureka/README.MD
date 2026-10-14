@@ -1,175 +1,84 @@
-# Nacos Sync 单向同步 使用
+# Eureka ↔ Nacos 双向同步
 
+本例演示 Spring Cloud 应用在 Eureka 和 Nacos 之间双向同步：
 
+1. Eureka 同步到 Nacos：`eureka-provider` 注册在 Eureka，同步到 Nacos 后，Nacos 上的应用可以调用它。
+2. Nacos 同步到 Eureka：`nacos-cloud-consumer` 注册在 Nacos，同步到 Eureka 后，Eureka 上的应用可以调用它。
 
-> 本例子演示Eureka单向同步到Nacos
->
+| 模块 | 注册到 | 端口 | 接口 |
+|---|---|---|---|
+| eureka-server | — | 18033 | Eureka 服务端，地址 `http://127.0.0.1:18033/eureka` |
+| eureka-provider | Eureka，服务名 `spring-cloud-eureka-provider` | 18032 | `/hello` 返回 `Hello World from Eureka!`；`/hello-nacos` 通过 Eureka 调用 `spring-cloud-nacos-consumer` |
+| nacos-cloud-consumer | Nacos，服务名 `spring-cloud-nacos-consumer` | 18035（管理端口 32002） | `/hello` 返回 `Hello World from Nacos!`；`/hello-eureka` 通过 Nacos 调用 `spring-cloud-eureka-provider` |
 
+## 1. 准备环境
 
+按[公共环境准备](../README.MD#公共环境准备)启动 MySQL、Nacos 和 nacos-sync，然后在仓库根目录执行 `mvn clean package`。
 
-## 环境准备
+## 2. 启动应用
 
-| 服务       | 版本      |
-| ---------- | --------- |
-| Nacos      | 1.3.0 |
-| Mysql      | 5.7       |
-| Nacos-Sync | 0.3.6     |
-
-本文演示上面的中间件服务均使用的是Docker Image,下面是docker安装过程
-
-
-
-1. 启动Nacos server
-
-```powershell
-$ docker run --name nacos-standalone -e MODE=standalone -p 8848:8848 -p 9848:9848 -d nacos/nacos-server:2.0.1
+```shell
+java -jar cloud-eureka/eureka-server/target/eureka-server-1.0-SNAPSHOT.jar
+java -jar cloud-eureka/eureka-provider/target/eureka-provider-1.0-SNAPSHOT.jar
+SPRING_CLOUD_NACOS_DISCOVERY_USERNAME=nacos SPRING_CLOUD_NACOS_DISCOVERY_PASSWORD=<nacos 密码> \
+  java -jar cloud-eureka/nacos-cloud-consumer/target/nacos-cloud-consumer-1.0-SNAPSHOT.jar
 ```
 
+Nacos 没有开启鉴权时，去掉 `nacos-cloud-consumer` 前面的两个环境变量即可。
 
+## 3. 在 nacos-sync 里添加集群
 
-2. Eureka Server & Eureka Provider 启动
+打开 http://127.0.0.1:8083 ，在「集群配置 → 新增集群」里添加：
 
-```java
-// 启动 Eureka Server
-@SpringBootApplication
-@EnableEurekaServer
-public class EurekaServerApplication {
+| 集群类型 | 集群 IP 列表 |
+|---|---|
+| EUREKA | `http://127.0.0.1:18033/eureka` |
+| NACOS | `127.0.0.1:8848`，开启鉴权时填写用户名和密码 |
 
-    public static void main(String[] args) {
-        SpringApplication.run(EurekaServerApplication.class, args);
-    }
+![新增 Eureka 集群](img/eureka-server.png)
 
-}
+## 4. 添加同步任务
+
+在「服务同步 → 新增同步」里添加两个任务，分组名留空即为 `DEFAULT_GROUP`：
+
+| 源集群 | 目标集群 | 服务名 |
+|---|---|---|
+| Eureka | Nacos | `spring-cloud-eureka-provider` |
+| Nacos | Eureka | `spring-cloud-nacos-consumer` |
+
+![新增同步任务](img/sync-task.png)
+
+## 5. 验证
+
+```shell
+curl http://127.0.0.1:18035/hello-eureka   # Nacos 上的应用调用 Eureka 上的服务，返回 Hello World from Eureka!
+curl http://127.0.0.1:18032/hello-nacos    # Eureka 上的应用调用 Nacos 上的服务，返回 Hello World from Nacos!
 ```
 
+Eureka 服务端有 30 s 的响应缓存，Spring Cloud 客户端也每 30 s 刷新一次本地缓存，所以同步后可能要等一分钟左右才能调通。在 Nacos
+控制台的服务列表里也能看到同步过来的 `spring-cloud-eureka-provider`，它的元数据里带有 `sourceClusterId`。
 
+## 同步规则
 
-```java
-//启动 Eureka Provider
-@SpringBootApplication
-public class EurekaProviderApplication {
+- Eureka 到 Nacos 只同步状态为 UP 的实例。把实例设为 OUT_OF_SERVICE 或 DOWN 后，它会从 Nacos 移除，恢复 UP 后会重新同步。
+- Nacos 到 Eureka 不同步不健康或已禁用的实例。
+- 两个方向的任务同时存在时不会回环：同步过去的副本带有来源集群的元数据，不会再被同步回来。
+- 删除任务时，会移除它同步到目标端的副本，目标端原生注册的实例不受影响。
+- Eureka 上的应用被强制杀掉（kill -9）时不会主动注销，要等 Eureka 剔除过期租约后才会从 Nacos 移除，实测约 3 到 4 分钟。
 
-    public static void main(String[] args) {
-        SpringApplication.run(EurekaProviderApplication.class, args);
-    }
+## 用其他 Spring Cloud 版本系列构建 Eureka
 
-}
+Eureka 服务端和 `eureka-provider` 可以用 Spring Cloud 2021.0 到 2025.0 的任一版本系列构建，nacos-sync 2.x 都已验证过：
+
+```shell
+mvn package -pl cloud-eureka/eureka-server,cloud-eureka/eureka-provider -am \
+  -Dspring-boot.version=<Spring Boot 版本> -Dspring-cloud.version=<Spring Cloud 版本>
 ```
 
-
-
-3. 启动Mysql
-
-```powershell
-$ docker run --name nacos-sync-db -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=nacos_sync -p 3306:3306 -d  mysql:5.6
-```
-
-
-
-4. 启动Nacos-Sync
-
-下载最新Nacos-Sync Release包,并解压,进入解压后的目录,并修改conf/application.properties中的mysql配置
-
-```properties
-server.port=8081
-server.servlet.context-path=/
-
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
-spring.jpa.hibernate.ddl-auto=update
-
-
-spring.datasource.url=jdbc:mysql://127.0.0.1:3306/nacos_sync?characterEncoding=utf8
-spring.datasource.username=root
-spring.datasource.password=root
-```
-
-
-
-执行启动脚本
-
-```powershell
-$ ./bin/startup.sh restart
-```
-
-
-
-
-
-## Nacos Sync 添加集群
-
-打开Nacos Sync: localhost:8081
-
-### 添加Eureka集群
-
-1. 选择 集群配置->新增集群
-
-![image-20190406230949957](img/eureka-server.png)
-
-## 添加Nacos集群
-
-1. 选择 集群配置->新增集群
-
-   ![image-20190406231645381](img/nacos-server.png)
-
-   
-
-## 添加完成效果
-
-![image-20190406231703624](img/console-cluster.png)
-
-
-
-## Eureka 同步 Nacos
-
-
-
-### 添加同步任务
-
-1. 打开Nacos-Sync 控制台,添加同步任务。
-
-   选择 服务同步 -> 新增同步, 如图
-
-   ![image-20190406231155641](img/sync-task.png)
-
-2. 添加完成效果
-
-![image-20190406231252135](img/console-task-show.png)
-
-### 打开Nacos 控制台 查看同步结果
-
-打开Nacos 控制台: http://localhost:8848/nacos
-
-选择 服务管理-> 服务列表 ,如图
-
-![image-20190406231344743](img/nacos-server-show.png)
-
-
-
-### 测试：通过Nacos注册中心进行服务调用
-
-运行 nacos-consumer工程中的com.paderlol.nacos.consumer.NacosConsumerApplication类
-
-```java
-@SpringBootApplication
-@EnableDiscoveryClient
-@EnableFeignClients
-public class NacosConsumerApplication {
-
-    public static void main(String[] args) {
-        SpringApplication.run(NacosConsumerApplication.class, args);
-    }
-
-    @FeignClient(name = "spring-cloud-eureka-provider")
-    public interface HelloService {
-        @RequestMapping(value = "/hello", method = RequestMethod.GET)
-        String hello();
-
-
-    }
-}
-```
-
-
-
-打开浏览器:<http://localhost:18034/hello-eureka>
-
+| Spring Cloud | Spring Boot |
+|---|---|
+| 2021.0.9 | 2.7.18 |
+| 2022.0.5 | 3.0.13 |
+| 2023.0.6 | 3.3.13 |
+| 2024.0.3 | 3.4.13 |
+| 2025.0.3 | 3.5.16 |
